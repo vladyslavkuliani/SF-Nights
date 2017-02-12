@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import CommentsList from './CommentsList';
 
  class PostInfo extends Component{
   constructor(props){
@@ -29,12 +30,11 @@ import axios from 'axios';
     });
   }
 
-
   render(){
-    //SHOULD RENDER COMMENTS LIST HERE!
+
     return (
       <div className="col-md-8 col-md-offset-2 post-info">
-        {((this.state.comments.length>0) && allComments) || <div><h1>Be the first one to comment!</h1></div> }
+        {((this.state.comments.length>0) && <CommentsList comments={this.state.comments}/>) || <div><h1>Be the first one to comment!</h1></div> }
       </div>
     );
   }

@@ -15,13 +15,7 @@ class CommentsList extends Component{
     }
 
     render(){
-        let comments = this.props.comments.map((id)=>{
-            axios.get('/comment', {params: {id: id}}).then((comment)=>{
-                return comment;
-            });
-        });
-
-        let commentsList = comments.map((comment)=>{
+        let commentsList = this.props.comments.map((comment)=>{
             return (
                 <div>
                     <img src={comment.userProfilePic} style={this.commentImg}></img>
@@ -31,8 +25,6 @@ class CommentsList extends Component{
                 </div>
             );
         });
-
-        //TODO: add comments list with user data, rating, time posted, content
 
         return (
             <div>
