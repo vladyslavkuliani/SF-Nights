@@ -217,3 +217,13 @@ body{
   margin-top: 30px;
   clear: both;
 }
+
+.user-img{
+    hight: 250px;
+    width: 250px;
+    border-radius: 100%;
+}
+
+.user-profile{
+    text-align: center;
+}
