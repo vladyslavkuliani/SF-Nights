@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PlacesList from './PlacesList';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 class Places extends Component{
   constructor(props){
@@ -24,16 +25,17 @@ class Places extends Component{
     this.allPosts = [];
     this.markers = [];
 
-    var currentPlace;
-    var errorPlaces = 0;
-    var i = 0;
+
+    var numPlacesWithNoData = 0;
+
 
     axios.get('/getyelpdata').then(function(places){
       thisClass.nightClubs = places.data.jsonBody.businesses;
-      thisClass.nightClubs.forEach(function(place, index, arr){
+      console.log(thisClass.nightClubs);
+      thisClass.nightClubs.forEach(function(place, index){
         axios.post('/findorcreate', {id: place.id}).then(function(club){
-            if(club!={}){
-
+          console.log(club);
+            if(club.data!=""){
               thisClass.isCurrentPlaceOpen = club.data.place.is_open_now;
               thisClass.currentPost = club.data.post;
               thisClass.allPosts.push(thisClass.currentPost);
@@ -59,20 +61,25 @@ class Places extends Component{
 
               var infoWindow = new window.google.maps.InfoWindow({content: thisClass.content});
 
-              console.log("INDEX", index);
-              console.log("places", place);
               marker.addListener('click', function(){
                 infoWindow.open(thisClass.map, marker);
                 window.scrollTo(0, index*116);
-                document.getElementsByClassName('.place-info').css('border', '1px solid #DCDCDC');
-                document.getElementById(place.id).css('border', '3px solid #00AF33');
+                var notSelectedElements =   document.getElementsByClassName('place-info');
+                for(var i=0; i<notSelectedElements.length; i++){
+                  notSelectedElements[i].setAttribute("style", "border: 2px solid #DCDCDC");
+                }
+
+                document.getElementById(place.id).setAttribute("style", "border: 5px solid #00AF33");//#00AF33
               });
 
               thisClass.markers.push(marker);
-              if((thisClass.nightClubs.length)===thisClass.allPosts.length){
-                console.log("nightclubs", thisClass.nightClubs)
+
+              if((thisClass.nightClubs.length-numPlacesWithNoData)===thisClass.allPosts.length){
                 thisClass.setState({readyToRender: true});
               }
+          }
+          else{
+            numPlacesWithNoData++;
           }
         });
       });
@@ -103,6 +110,7 @@ class Places extends Component{
     {console.log(this.markers)}
     return (
       <div>
+        <NavBar gotLocationData={this.state.gotLocationData}/>
         <div id="map"></div>
         <div className="col-md-6 col-md-offset-6">
           {this.state.readyToRender && <PlacesList places={this.nightClubs} markers={this.markers} allPosts={this.allPosts}/>}

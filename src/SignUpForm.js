@@ -10,7 +10,7 @@ class SignUpForm extends Component {
       name: document.getElementById("signup__username").value,
       email: document.getElementById("signup__email").value,
       dob: document.getElementById("signup__dob").value,
-      passwordDigest: document.getElementById("signup__password").value
+      password: document.getElementById("signup__password").value
     };
 
     console.log(userData);

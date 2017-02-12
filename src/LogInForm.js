@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class LogInForm extends Component {
+  onLogIn(event){
+    event.preventDefault();
+
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    var userData = {
+      email: document.getElementById("login__username").value,
+      password: document.getElementById("login__password").value
+    };
+
+    console.log(userData);
+    axios.post("/login", userData).then(function(response){
+      window.location.replace("/profile");
+  });
+  }
+
   render(){
     return (
       <div>
@@ -18,7 +34,7 @@ class LogInForm extends Component {
               </div>
 
               <div className="form__field">
-                <input type="submit" value="Log In" onClick={this.props.onLogIn}/>
+                <input type="submit" value="Log In" onClick={this.onLogIn}/>
               </div>
 
             </form>
