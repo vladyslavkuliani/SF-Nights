@@ -10,7 +10,7 @@ class SignUpForm extends Component {
       name: document.getElementById("signup__username").value,
       email: document.getElementById("signup__email").value,
       dob: document.getElementById("signup__dob").value,
-      password: document.getElementById("signup__password").value
+      passwordDigest: document.getElementById("signup__password").value
     };
 
     console.log(userData);
@@ -43,7 +43,7 @@ class SignUpForm extends Component {
 
           <div className="form__field">
             <label for="signup__password"><span className="hidden">Password</span></label>
-            <input className="form__input" id="signup__password" type="password" name="password" placeholder="Password"/>
+            <input className="form__input" id="signup__password" type="password" name="passwordDigest" placeholder="Password"/>
           </div>
 
           <div className="form__field">
