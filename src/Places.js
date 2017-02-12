@@ -36,8 +36,6 @@ class Places extends Component{
               thisClass.isCurrentPlaceOpen = club.data.place.is_open_now;
               thisClass.currentPost = club.data.post;
               thisClass.allPosts.push(thisClass.currentPost);
-
-
               thisClass.content = '<div class="row info-marker"><div class="col-md-9"><h4> '+place.name+'</h4>' +
               "Tonight's rating: <strong>" + thisClass.currentPost.rating + "</strong> | <strong>" + thisClass.currentPost.votes.length +"</strong> votes<br>" +
               place.location.display_address[0] + ", " + place.location.display_address[1] +
@@ -72,6 +70,7 @@ class Places extends Component{
               });
 
               thisClass.markers.push(marker);
+
               if((thisClass.nightClubs.length-numPlacesWithNoData)===thisClass.allPosts.length){
                 thisClass.setState({readyToRender: true});
               }
@@ -88,7 +87,7 @@ class Places extends Component{
     var thisClass = this;
     axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
     axios.get('/position').then(function(position){
-      console.log(position);
+      console.log("position",position);
       thisClass.map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: parseFloat(position.data.lat), lng:parseFloat(position.data.lng)},
         zoom: 12
@@ -104,6 +103,8 @@ class Places extends Component{
   }
 
   render(){
+    {console.log(this.nightClubs)}
+    {console.log(this.markers)}
     return (
       <div>
         <div id="map"></div>

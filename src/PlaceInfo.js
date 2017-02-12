@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import ReactStars from 'react-stars'
 import axios from 'axios';
+import Comments from './comments';
 
 class PlaceInfo extends Component{
     constructor(props){
@@ -27,13 +29,14 @@ class PlaceInfo extends Component{
     });
   }
 
-    getPostData(placeId, commentsNeeded){
+  getPostData(placeId, commentsNeeded){
         var thisComponent = this;
   }
 
+
   render(){
-      console.log("POST------:");
-    console.log(this.state.post);
+    console.log("POST------:",  this.state.post);
+    console.log("open",  this.props.isOpenNow);
     var place = this.props.place;
     var post = this.props.post;
     return (
@@ -41,7 +44,7 @@ class PlaceInfo extends Component{
         <img src={place.image_url} className="place-info-img" />
         <h3>{place.name}</h3>
         {this.props.isOpenNow && this.state.gotPost && <span className="rating-tonight">Rating tonight: <strong>{this.state.post.rating}</strong> | <strong>{this.state.post.votes.length}</strong> votes</span>}
-        {this.props.isOpenNow && <div className="comment-btn"><button className="btn m-b-xs w-xs btn-dark" onClick={()=>{this.props.leaveComment()}}>Comment</button></div>}
+        {this.props.isOpenNow && <Comments/>}
       </div>
     );
   }

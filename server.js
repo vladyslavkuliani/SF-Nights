@@ -137,4 +137,51 @@ app.get('/getpost', function(req, res){
   });
 });
 
+app.post('/leavecomment', function(req, res){
+  var newComment = new db.Comment({
+    content: req.body.comment,
+    userId: req.session.userId,
+    rating: req.body.rating
+  });
+  newComment.save();
+
+  db.Place.findOne({yelp_id: req.body.id}, function(err, foundPlace){
+    db.Post.findOne({_id: foundPlace.currentPost}, function(err, foundPost){
+      foundPost.comments.push(newComment._id);
+      foundPost.votes.push(req.body.rating);
+      foundPost.rating = (foundPost.votes.reduce((a,b)=>{return a+b}, 0)/foundPost.votes.length).toFixed(1);
+      foundPost.save();
+      newComment.postId = foundPost._id;
+      newComment.save();
+    });
+
+    var newUserPlace = new db.UserPlace({
+      date: new Date(),
+      placeId: foundPlace._id,
+      visitorId: req.session.userId
+    });
+    newUserPlace.save();
+    foundPlace.visitors.push(newUserPlace._id);
+    foundPlace.save();
+
+    db.User.findOne({_id: req.session.userId}, function(err, user){
+      user.visitedPlaces.push(newUserPlace._id);
+      user.comments.push(newComment._id);
+      user.save();
+      newComment.userName = user.name;
+      newComment.userProfilePic = user.profilePicture;
+      newComment.save();
+    });
+  });
+
+  res.json(newComment);
+});
+
+app.get("/comment", function(req, res){
+    db.Comment.findOne({_id: req.query.id}, function(err, comment){
+
+      res.json(comment);
+    });
+});
+
 var server = app.listen(process.env.API_PORT || 3001);
