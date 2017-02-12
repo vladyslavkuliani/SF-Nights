@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var User = require('./model/user.js');
 const yelp = require('yelp-fusion');
 var db = require('./model');
@@ -13,10 +14,16 @@ var currentUserLocation = {
   "lng": null
 }
 var client;
+var userId;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: 'VladsIngredientSuperSecretCookie',
+  cookie: { maxAge: 30 * 60 * 1000 } // 30 minute cookie lifespan (in milliseconds)
+}));
 app.use(function(req, res, next) {
  res.setHeader("Access-Control-Allow-Origin", "*");
  res.setHeader("Access-Control-Allow-Credentials", 'true');
@@ -27,11 +34,17 @@ app.use(function(req, res, next) {
 });
 
 app.post('/signup', function(req, res){
-  db.User.create(req.body, function(err, newUser){
-    if(!err){ res.json(newUser);
-    return console.log('Success -> ', newUser , '<- was created');
-  }
-    console.log('There was an error creating a new user -> ', err);
+  User.createSecure(req.body.name, req.body.email, req.body.dob, req.body.password, function(err, user){
+    if(err){console.log(err);}
+    res.json(user);
+  });
+});
+
+app.post('/login', function(req, res){
+  User.authenticate(req.body.email, req.body.password, function(err, user){
+    req.session.userId = user._id
+    userId = user._id;
+    res.json(user);
   });
 });
 
@@ -183,5 +196,13 @@ app.get("/comment", function(req, res){
       res.json(comment);
     });
 });
+
+app.get('/currentuser', function(req, res){
+  console.log("-------------");
+  console.log(userId);
+  db.User.findOne({_id: userId}, function(err, user){
+    res.json(user);
+  });
+})
 
 var server = app.listen(process.env.API_PORT || 3001);

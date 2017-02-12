@@ -55,12 +55,6 @@ class PlacesList extends Component{
     var posts = this.props.allPosts;
     var thisComponent = this;
 
-<<<<<<< HEAD
-    console.log(places);
-    
-=======
-    console.log("places list props", this.props)
->>>>>>> 70f2788367c9db78f6ff0176efcfe7bf15c2c512
       var divPlaces = places.map(function(place, index){
         return (
           <div key={place.id} id={place.id} className="place-info row">

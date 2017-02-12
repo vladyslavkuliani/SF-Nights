@@ -4,7 +4,20 @@ import axios from 'axios';
 class UserProfile extends Component{
   constructor(props){
     super(props);
-    this.state = {gotLocationData: false};
+    this.state = {
+      gotLocationData: false, 
+      user:null,
+      gotUser:false
+    };
+  }
+
+  componentWillMount(){
+    var thisClass = this;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.get("/currentuser").then((user)=>{
+      console.log(user);
+      thisClass.setState({user: user.data, gotUser:true});
+    });
   }
 
   componentDidMount(){
@@ -28,7 +41,7 @@ class UserProfile extends Component{
   render(){
     return (
       <div>
-        <h1>USER PROFILE SHOULD BE HERE!</h1>
+        {this.state.gotUser && <h1>Welcome! {this.state.user.name}</h1>}
         {this.state.gotLocationData && <a href="/places">See Places</a>}
       </div>
     );
