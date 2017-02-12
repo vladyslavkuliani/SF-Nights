@@ -23,24 +23,20 @@ class Places extends Component{
     this.nightClubs = [];
     this.allPosts = [];
     this.markers = [];
-    
-    var allClubs = [];
+
     var currentPlace;
     var errorPlaces = 0;
     var i = 0;
 
     axios.get('/getyelpdata').then(function(places){
       thisClass.nightClubs = places.data.jsonBody.businesses;
-      thisClass.nightClubs.forEach(function(place, index){
+      thisClass.nightClubs.forEach(function(place, index, arr){
         axios.post('/findorcreate', {id: place.id}).then(function(club){
-          console.log(club);
             if(club!={}){
+
               thisClass.isCurrentPlaceOpen = club.data.place.is_open_now;
               thisClass.currentPost = club.data.post;
-              allClubs.push(club.place);
               thisClass.allPosts.push(thisClass.currentPost);
-
-
               thisClass.content = '<div class="row info-marker"><div class="col-md-9"><h4> '+place.name+'</h4>' +
               "Tonight's rating: <strong>" + thisClass.currentPost.rating + "</strong> | <strong>" + thisClass.currentPost.votes.length +"</strong> votes<br>" +
               place.location.display_address[0] + ", " + place.location.display_address[1] +
@@ -62,7 +58,8 @@ class Places extends Component{
 
               var infoWindow = new window.google.maps.InfoWindow({content: thisClass.content});
 
-              console.log("INDEX " + index);
+              console.log("INDEX", index);
+              console.log("places", place);
               marker.addListener('click', function(){
                 infoWindow.open(thisClass.map, marker);
                 window.scrollTo(0, index*116);
@@ -72,11 +69,9 @@ class Places extends Component{
 
               thisClass.markers.push(marker);
               if((thisClass.nightClubs.length)===thisClass.allPosts.length){
+                console.log("nightclubs", thisClass.nightClubs)
                 thisClass.setState({readyToRender: true});
               }
-          }
-          else{
-            place.id;
           }
         });
       });
@@ -87,16 +82,11 @@ class Places extends Component{
     var thisClass = this;
     axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
     axios.get('/position').then(function(position){
-      console.log(position);
+      console.log("position",position);
       thisClass.map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: parseFloat(position.data.lat), lng:parseFloat(position.data.lng)},
         zoom: 12
       });
-
-    // var marker = new window.google.maps.Marker({
-    //     position: new window.google.maps.LatLng(position.data.lat, position.data.lng),
-    //     map: map
-    // });
 
       var infoWindow = new window.google.maps.InfoWindow({map: thisClass.map});
 
@@ -108,6 +98,8 @@ class Places extends Component{
   }
 
   render(){
+    {console.log(this.nightClubs)}
+    {console.log(this.markers)}
     return (
       <div>
         <div id="map"></div>
