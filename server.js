@@ -121,4 +121,21 @@ app.post('/findorcreate', function(req,res){
   });
 });
 
+app.get('/getplace', function(req,res){
+    client.business(req.query.id).then(function(place){
+      res.json(place);
+    });
+});
+
+app.get('/getpost', function(req, res){
+  console.log("------------------------");
+  console.log(req.query);
+  db.Place.findOne({yelp_id: req.query.clubId}, function(err, place){
+    console.log(place);
+    db.Post.findOne({_id: place.currentPost}, function(err, post){
+      res.json(post);
+    })
+  });
+});
+
 var server = app.listen(process.env.API_PORT || 3001);
