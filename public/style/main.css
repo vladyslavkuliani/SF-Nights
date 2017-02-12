@@ -3,8 +3,8 @@
   width: 50%;
   float: left;
   position: fixed !important;
-  top: 60px;
-  left: 0;
+  top: 62px;
+  left: 20px;
 }
 
 #places-list{
@@ -217,4 +217,3 @@ body{
   margin-top: 30px;
   clear: both;
 }
-
