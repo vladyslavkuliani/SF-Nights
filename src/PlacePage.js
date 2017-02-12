@@ -31,12 +31,17 @@ class PlacePage extends Component{
     this.setState({newComment: true});
   }
 
-  handleOnPostComment(){
+  handleOnPostComment(e){
     var thisComponent = this;
     var data;
+    e.preventDefault();
+    console.log("handleonpost", e);
+
     // var data = $(".feedback-form").serialize();
     data += "&id=" + this.state.place.jsonBody.id;
+    console.log("data: ", data)
     axios.post('/leavecomment', data, function(response){
+      console.log(response);
       thisComponent.setState({newComment: false, updateComments: false});
       thisComponent.setState({updateComments: true});
     });
@@ -46,8 +51,8 @@ class PlacePage extends Component{
   render(){
     return (
       <div>
-        {this.state.gotPlace && this.state.updateComments && <PlaceInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody} leaveComment={this.leaveComment.bind(this)}/>}  
-        {(this.state.is_open_now && this.state.updateComments && <PostInfo place={this.state.place.jsonBody}/>) || <SorryMessage/>}          
+        {this.state.gotPlace && this.state.updateComments && <PlaceInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody} handleOnPostComment={this.handleOnPostComment.bind(this)}/>}
+        {(this.state.is_open_now && this.state.updateComments && <PostInfo place={this.state.place.jsonBody}/>) || <SorryMessage/>}
       </div>
     );
   }
