@@ -23,21 +23,18 @@ class Places extends Component{
     this.nightClubs = [];
     this.allPosts = [];
     this.markers = [];
-    
-    var allClubs = [];
-    var currentPlace;
-    var errorPlaces = 0;
-    var i = 0;
+
+    var numPlacesWithNoData = 0;
 
     axios.get('/getyelpdata').then(function(places){
       thisClass.nightClubs = places.data.jsonBody.businesses;
+      console.log(thisClass.nightClubs);
       thisClass.nightClubs.forEach(function(place, index){
         axios.post('/findorcreate', {id: place.id}).then(function(club){
           console.log(club);
-            if(club!={}){
+            if(club.data!=""){
               thisClass.isCurrentPlaceOpen = club.data.place.is_open_now;
               thisClass.currentPost = club.data.post;
-              allClubs.push(club.place);
               thisClass.allPosts.push(thisClass.currentPost);
 
 
@@ -63,21 +60,24 @@ class Places extends Component{
 
               var infoWindow = new window.google.maps.InfoWindow({content: thisClass.content});
 
-              console.log("INDEX " + index);
               marker.addListener('click', function(){
                 infoWindow.open(thisClass.map, marker);
                 window.scrollTo(0, index*116);
-                document.getElementsByClassName('.place-info').css('border', '1px solid #DCDCDC');
-                document.getElementById(place.id).css('border', '3px solid #00AF33');
+                var notSelectedElements =   document.getElementsByClassName('place-info');
+                for(var i=0; i<notSelectedElements.length; i++){
+                  notSelectedElements[i].setAttribute("style", "border: 2px solid #DCDCDC");
+                }
+
+                document.getElementById(place.id).setAttribute("style", "border: 5px solid #00AF33");//#00AF33
               });
 
               thisClass.markers.push(marker);
-              if((thisClass.nightClubs.length)===thisClass.allPosts.length){
+              if((thisClass.nightClubs.length-numPlacesWithNoData)===thisClass.allPosts.length){
                 thisClass.setState({readyToRender: true});
               }
           }
           else{
-            place.id;
+            numPlacesWithNoData++;
           }
         });
       });
@@ -93,11 +93,6 @@ class Places extends Component{
         center: {lat: parseFloat(position.data.lat), lng:parseFloat(position.data.lng)},
         zoom: 12
       });
-
-    // var marker = new window.google.maps.Marker({
-    //     position: new window.google.maps.LatLng(position.data.lat, position.data.lng),
-    //     map: map
-    // });
 
       var infoWindow = new window.google.maps.InfoWindow({map: thisClass.map});
 

@@ -54,6 +54,7 @@ class PlacesList extends Component{
     var posts = this.props.allPosts;
     var thisComponent = this;
 
+    console.log(places);
     
       var divPlaces = places.map(function(place, index){
         return (

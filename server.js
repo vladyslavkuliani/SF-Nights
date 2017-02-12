@@ -49,7 +49,7 @@ app.get("/getyelpdata", function(req,res){
     client = yelp.client(response.jsonBody.access_token);
 
     client.search({
-      term:'Bars',
+      term:'Night clubs',
       latitude: currentUserLocation["lat"],
       longitude: currentUserLocation["lng"],
       radius: 7000,
@@ -76,8 +76,6 @@ app.post('/findorcreate', function(req,res){
 
   db.Place.findOne({yelp_id: req.body.id}, function(err, foundPlace){
       client.business(req.body.id).then(function(detailedInfoPlace){
-        console.log("DETAILED INFO");
-        console.log(detailedInfoPlace.jsonBody["hours"]);
           if(!foundPlace){
             var newPlace = new db.Place({
               yelp_id: req.body.id,
@@ -108,7 +106,12 @@ app.post('/findorcreate', function(req,res){
             returningNewPlace(newPlace, newPost);
         }
         else{
-          foundPlace.is_open_now = detailedInfoPlace.jsonBody["hours"][0].is_open_now;
+          if(typeof detailedInfoPlace.jsonBody["hours"] !== "undefined"){
+              foundPlace.is_open_now = detailedInfoPlace.jsonBody["hours"][0].is_open_now;
+            }
+            else{
+              foundPlace.is_open_now = false;
+            }
           foundPlace.save();
           returnExistingPlace(foundPlace);
         }
@@ -127,13 +130,10 @@ app.get('/getplace', function(req,res){
 });
 
 app.get('/getpost', function(req, res){
-  console.log("------------------------");
-  console.log(req.query);
   db.Place.findOne({yelp_id: req.query.clubId}, function(err, place){
-    console.log(place);
     db.Post.findOne({_id: place.currentPost}, function(err, post){
       res.json(post);
-    })
+    });
   });
 });
 
