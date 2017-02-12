@@ -3,8 +3,8 @@
   width: 50%;
   float: left;
   position: fixed !important;
-  top: 60px;
-  left: 0;
+  top: 62px;
+  left: 20px;
 }
 
 #places-list{
@@ -218,3 +218,12 @@ body{
   clear: both;
 }
 
+.user-img{
+    hight: 250px;
+    width: 250px;
+    border-radius: 100%;
+}
+
+.user-profile{
+    text-align: center;
+}

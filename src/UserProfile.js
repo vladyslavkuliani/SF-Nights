@@ -7,7 +7,7 @@ class UserProfile extends Component{
   constructor(props){
     super(props);
     this.state = {
-      gotLocationData: false, 
+      gotLocationData: false,
       user:null,
       gotUser:false
     };
@@ -42,13 +42,15 @@ class UserProfile extends Component{
 
   render(){
     return (
-      <div>
-
+      <div className="row">
+        <br />
         <NavBar gotLocationData={this.state.gotLocationData}/>
-        {this.state.gotUser && <h1>Welcome! {this.state.user.name}</h1>}
-        {/*{this.state.gotLocationData && <a href="/places">See Places</a>}        */}
-        <div className="col-md-7 col-md-offset-5">
 
+        <div className="col-md-4 user-profile">
+            {this.state.gotUser && <h2><i>Welcome Back! <strong>{this.state.user.name}</strong></i></h2>}
+            <img src="http://i.imgur.com/7Yc9GZf.png" className="user-img"/>
+            <h3>{this.state.gotUser && this.state.user.name}</h3>
+            <hr/>
         </div>
       </div>
     );
