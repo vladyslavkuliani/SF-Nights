@@ -6,7 +6,7 @@ class UserProfile extends Component{
   constructor(props){
     super(props);
     this.state = {
-      gotLocationData: false, 
+      gotLocationData: false,
       user:null,
       gotUser:false
     };
@@ -42,11 +42,9 @@ class UserProfile extends Component{
   render(){
     return (
       <div>
-
+        <br />
         <NavBar gotLocationData={this.state.gotLocationData}/>
-
         {this.state.gotUser && <h1>Welcome! {this.state.user.name}</h1>}
-        {this.state.gotLocationData && <a href="/places">See Places</a>}
       </div>
     );
   }
