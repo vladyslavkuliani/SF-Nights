@@ -17,7 +17,6 @@ class UserProfile extends Component{
     var thisClass = this;
     axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
     axios.get("/currentuser").then((user)=>{
-      console.log(user);
       thisClass.setState({user: user.data, gotUser:true});
     });
   }
@@ -48,7 +47,7 @@ class UserProfile extends Component{
 
         <div className="col-md-4 user-profile">
             {this.state.gotUser && <h2><i>Welcome Back! <strong>{this.state.user.name}</strong></i></h2>}
-            <img src="http://i.imgur.com/7Yc9GZf.png" className="user-img"/>
+            {this.state.gotUser && <img src="http://i.imgur.com/7Yc9GZf.png" className="user-img"/>}
             <h3>{this.state.gotUser && this.state.user.name}</h3>
             <hr/>
         </div>

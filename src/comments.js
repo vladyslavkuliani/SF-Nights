@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 import axios from 'axios';
 
 

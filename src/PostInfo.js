@@ -29,28 +29,9 @@ import axios from 'axios';
     });
   }
 
-  render(){
-    var tempArr = this.state.comments.sort((a,b)=>{a._id < b._id});
-        var allComments = tempArr.map((comment)=>{
-        return (
-        <div>
-          <a className="pull-left thumb-sm">
-            <img src={comment.userProfilePic} className="img-circle"/>
-          </a>
-          <div className="m-l-xxl m-b">
-            <div>
-              <a href><strong>{comment.userName} | {comment.rating}</strong></a>
-              <span className="text-muted text-xs block m-t-xs">
-                X minutes ago
-              </span>
-            </div>
-            <div className="m-t-sm">{comment.content}</div>
-          </div>
-          <hr/>
-        </div>
-      );
-    });
 
+  render(){
+    //SHOULD RENDER COMMENTS LIST HERE!
     return (
       <div className="col-md-8 col-md-offset-2 post-info">
         {((this.state.comments.length>0) && allComments) || <div><h1>Be the first one to comment!</h1></div> }
