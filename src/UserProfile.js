@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 class UserProfile extends Component{
   constructor(props){
@@ -28,8 +29,8 @@ class UserProfile extends Component{
   render(){
     return (
       <div>
+        <NavBar gotLocationData={this.state.gotLocationData}/>
         <h1>USER PROFILE SHOULD BE HERE!</h1>
-        {this.state.gotLocationData && <a href="/places">See Places</a>}
       </div>
     );
   }
