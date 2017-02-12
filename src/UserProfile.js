@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import NavBar from './NavBar';
+import CommentsList from './CommentsList';
 
 class UserProfile extends Component{
   constructor(props){
@@ -44,9 +45,11 @@ class UserProfile extends Component{
       <div>
 
         <NavBar gotLocationData={this.state.gotLocationData}/>
-
         {this.state.gotUser && <h1>Welcome! {this.state.user.name}</h1>}
-        {this.state.gotLocationData && <a href="/places">See Places</a>}
+        {/*{this.state.gotLocationData && <a href="/places">See Places</a>}        */}
+        <div className="col-md-7 col-md-offset-5">
+
+        </div>
       </div>
     );
   }

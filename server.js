@@ -199,8 +199,6 @@ app.get("/comment", function(req, res){
 });
 
 app.get('/currentuser', function(req, res){
-  console.log("-------------");
-  console.log(userId);
   db.User.findOne({_id: userId}, function(err, user){
     res.json(user);
   });
