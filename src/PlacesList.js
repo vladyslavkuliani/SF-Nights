@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 class PlacesList extends Component{
+
   triggerMarkerClick(name){
     for(let i=0; i<this.props.markers.length; i++){
         if(this.props.markers[i].placeName === name){
@@ -54,7 +55,6 @@ class PlacesList extends Component{
     var posts = this.props.allPosts;
     var thisComponent = this;
 
-    
       var divPlaces = places.map(function(place, index){
         return (
           <div key={place.id} id={place.id} className="place-info row">
