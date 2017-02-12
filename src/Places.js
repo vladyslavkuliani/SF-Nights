@@ -51,6 +51,7 @@ class Places extends Component{
               }
 
               var marker = new window.google.maps.Marker({
+                      placeName: place.name,
                       position: new window.google.maps.LatLng(place.coordinates.latitude, place.coordinates.longitude),
                       map: thisClass.map
                 });

@@ -5,6 +5,7 @@ import LogInForm from './LogInForm';
 import SignUpForm from './SignUpForm';
 import UserProfile from './UserProfile';
 import Places from './Places';
+import PlacePage from './PlacePage';
 
 const Routes = (props) => (
   <Router {...props}>
@@ -12,11 +13,11 @@ const Routes = (props) => (
     <Route path="/signup" component={SignUpForm}/>
     <Route path="/profile" component={UserProfile}/>
     <Route path="/places" component={Places}/>
+    <Route path="/places/:id" component={PlacePage}/>
   </Router>
 );
 
 export default Routes;
-
 // $.get('/position', function(position){
 //   map = new google.maps.Map(document.getElementById('map'), {
 //     center: {lat: parseFloat(position.lat), lng:parseFloat(position.lng)},

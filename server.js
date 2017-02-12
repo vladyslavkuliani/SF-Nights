@@ -1,5 +1,3 @@
-"use strict"
-
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -29,11 +27,12 @@ app.use(function(req, res, next) {
 });
 
 app.post('/signup', function(req, res){
-  res.json({res: "some res"});
-    // User.createSecure(req.body.name, req.body.email, req.body.dob, req.body.password, function(err, user){
-    //   if(err){console.log(err);}
-    //   res.json(user);
-    // });
+  db.User.create(req.body, function(err, newUser){
+    if(!err){ res.json(newUser);
+    return console.log('Success -> ', newUser , '<- was created');
+  }
+    console.log('There was an error creating a new user -> ', err);
+  });
 });
 
 app.get('/position', function(req, res){
@@ -118,6 +117,23 @@ app.post('/findorcreate', function(req,res){
         console.log(e);
         res.json();
       });
+  });
+});
+
+app.get('/getplace', function(req,res){
+    client.business(req.query.id).then(function(place){
+      res.json(place);
+    });
+});
+
+app.get('/getpost', function(req, res){
+  console.log("------------------------");
+  console.log(req.query);
+  db.Place.findOne({yelp_id: req.query.clubId}, function(err, place){
+    console.log(place);
+    db.Post.findOne({_id: place.currentPost}, function(err, post){
+      res.json(post);
+    })
   });
 });
 

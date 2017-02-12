@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 
 class PlacesList extends Component{
-  triggerMarkerClick(index){
-    console.log(this.props.markers[index].lat);
-    window.google.maps.event.trigger(this.props.markers[index], 'click');
+
+  triggerMarkerClick(name){
+    for(let i=0; i<this.props.markers.length; i++){
+        if(this.props.markers[i].placeName === name){
+            window.google.maps.event.trigger(this.props.markers[i], 'click');
+            break;
+        }
+    }
   }
 
   displayRating(rating){
@@ -54,7 +59,7 @@ class PlacesList extends Component{
       var divPlaces = places.map(function(place, index){
         return (
           <div key={place.id} id={place.id} className="place-info row">
-            <img src={place.image_url} className="club-img pull-left" onClick={()=>{thisComponent.triggerMarkerClick(index)}}/>
+            <img src={place.image_url} className="club-img pull-left" onClick={()=>{thisComponent.triggerMarkerClick(place.name)}}/>
             <div className="col-md-6 club-name">
               <h4><a href="#" onClick={thisComponent.goToPage.bind(thisComponent, place.id)}>{place.name}</a></h4>
               <span className="text-rating">Rating tonight: <strong>{posts[index].rating}</strong> | <strong>{posts[index].votes.length}</strong> votes</span>
