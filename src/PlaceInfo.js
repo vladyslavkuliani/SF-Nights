@@ -39,10 +39,6 @@ class PlaceInfo extends Component{
 
 
   render(){
-
-    console.log("POST------:",  this.state.post);
-    console.log("open",  this.props.isOpenNow);
-
     var place = this.props.place;
     var post = this.props.post;
     return (

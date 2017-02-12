@@ -37,7 +37,7 @@ class PlacePage extends Component{
     e.preventDefault();
     console.log("handleonpost", e);
 
-    // var data = $(".feedback-form").serialize();
+
     data += "&id=" + this.state.place.jsonBody.id;
     console.log("data: ", data)
     axios.post('/leavecomment', data, function(response){
@@ -46,7 +46,7 @@ class PlacePage extends Component{
       thisComponent.setState({updateComments: true});
     });
   }
-  // {rating: data.rating, comment: data.comment, id: this.state.place.jsonBody.id}
+
 
   render(){
     return (
@@ -59,8 +59,3 @@ class PlacePage extends Component{
 }
 
 export default PlacePage;
-/*<Header gotLocationData={true}/>
-<div className="empty-div"></div>
-<AdditionalNavigation/>
-{this.state.newComment && <NewCommentForm place={this.state.place.jsonBody} handlePost={this.handleOnPostComment.bind(this)}/>}
-*/

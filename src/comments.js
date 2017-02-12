@@ -30,7 +30,7 @@ class Comments extends Component{
     console.log("comment: ", this.comment)
     console.log("data: ", data)
     axios.post('/leavecomment', data).then(function(response){
-      console.log(response);
+      
       thisComponent.setState({newComment: false, updateComments: false});
       thisComponent.setState({updateComments: true});
     });
