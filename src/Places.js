@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PlacesList from './PlacesList';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 class Places extends Component{
   constructor(props){
@@ -24,7 +25,9 @@ class Places extends Component{
     this.allPosts = [];
     this.markers = [];
 
+
     var numPlacesWithNoData = 0;
+
 
     axios.get('/getyelpdata').then(function(places){
       thisClass.nightClubs = places.data.jsonBody.businesses;
@@ -107,6 +110,7 @@ class Places extends Component{
     {console.log(this.markers)}
     return (
       <div>
+        <NavBar gotLocationData={this.state.gotLocationData}/>
         <div id="map"></div>
         <div className="col-md-6 col-md-offset-6">
           {this.state.readyToRender && <PlacesList places={this.nightClubs} markers={this.markers} allPosts={this.allPosts}/>}
