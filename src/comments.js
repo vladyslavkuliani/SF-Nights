@@ -22,7 +22,6 @@ class Comments extends Component{
   }
 
   submit(e){
-    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
     var thisComponent = this;
     var data = {comment: this.comment, rating: this.rating, yelp_id: this.props.id};
     e.preventDefault();
