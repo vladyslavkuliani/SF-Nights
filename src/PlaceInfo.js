@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import NavBar from './NavBar';
 import styles from '../public/style/navbar.css';
-import Comments from './comments';
 
 
 class PlaceInfo extends Component{
@@ -21,8 +20,6 @@ class PlaceInfo extends Component{
     // this.getPostData(this.props.place.id, false);
     axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
     axios.get("/getpost", {params:{clubId: this.props.place.id}}).then(function(post){
-      console.log("COMPONENT DID:");
-      console.log(post);
     //   if(commentsNeeded){
     //     axios.get("/comments", {post: post}).then(function(comments){
     //       console.log(comments);
@@ -47,11 +44,10 @@ class PlaceInfo extends Component{
         <img src={place.image_url} className="place-info-img" />
         <h3>{place.name}</h3>
         {this.props.isOpenNow && this.state.gotPost && <span className="rating-tonight">Rating tonight: <strong>{this.state.post.rating}</strong> | <strong>{this.state.post.votes.length}</strong> votes</span>}
-        {this.props.isOpenNow && <Comments id={this.props.place.id}/>}
       </div>
     );
   }
 }
 
 export default PlaceInfo;
-// <span>Rating tonight:   | <strong>{post.votes.length}</strong> votes</span>
+

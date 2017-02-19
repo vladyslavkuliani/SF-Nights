@@ -15,13 +15,17 @@ class CommentsList extends Component{
     }
 
     render(){
-        let commentsList = this.props.comments.map((comment)=>{
+        console.log(this.props.comments);
+        let commentsList = this.props.comments.reverse().map((comment)=>{
             return (
-                <div>
-                    <img src={comment.userProfilePic} style={this.commentImg}></img>
-                    <h4>comment.userName</h4>
-                    <h4>comment.rating</h4>
-                    <p>comment.content</p>             
+                <div key={comment._id}>
+                    <div key={comment._id}>
+                        <img src={comment.userProfilePic} style={this.commentImg}></img>
+                        <h4>{comment.userName}</h4>
+                        <h4>{comment.rating}</h4>
+                        <p>{comment.content}</p>             
+                    </div>
+                    <br/>
                 </div>
             );
         });

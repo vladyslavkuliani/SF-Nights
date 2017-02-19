@@ -39,7 +39,7 @@ class PlacePage extends Component{
 
 
     data += "&id=" + this.state.place.jsonBody.id;
-    console.log("data: ", data)
+    console.log("data: ", data);
     axios.post('/leavecomment', data, function(response){
       console.log(response);
       thisComponent.setState({newComment: false, updateComments: false});
@@ -52,7 +52,7 @@ class PlacePage extends Component{
     return (
       <div>
         {this.state.gotPlace && this.state.updateComments && <PlaceInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody} handleOnPostComment={this.handleOnPostComment.bind(this)}/>}
-        {(this.state.is_open_now && this.state.updateComments && <PostInfo place={this.state.place.jsonBody}/>) || <SorryMessage/>}
+        {(this.state.is_open_now && this.state.updateComments && <PostInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody}/>) || <SorryMessage/>}
       </div>
     );
   }

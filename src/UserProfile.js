@@ -46,7 +46,6 @@ class UserProfile extends Component{
         <NavBar gotLocationData={this.state.gotLocationData}/>
 
         <div className="col-md-4 user-profile">
-            {this.state.gotUser && <h2><i>Welcome Back! <strong>{this.state.user.name}</strong></i></h2>}
             {this.state.gotUser && <img src="http://i.imgur.com/7Yc9GZf.png" className="user-img"/>}
             <h3>{this.state.gotUser && this.state.user.name}</h3>
             <hr/>

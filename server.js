@@ -63,7 +63,7 @@ app.get("/getyelpdata", function(req,res){
     client = yelp.client(response.jsonBody.access_token);
 
     client.search({
-      term:'coffee',
+      term:'night clubs',
       latitude: currentUserLocation["lat"],
       longitude: currentUserLocation["lng"],
       radius: 7000,
@@ -158,7 +158,7 @@ app.post('/leavecomment', function(req, res){
     content: req.body.comment,
     userId: userId,
     time: currentTime,
-    rating: req.body.rating,
+    rating: req.body.rating
   });
   newComment.save();
 
@@ -196,7 +196,6 @@ app.post('/leavecomment', function(req, res){
 
 app.get("/comment", function(req, res){
     db.Comment.findOne({_id: req.query.id}, function(err, comment){
-
       res.json(comment);
     });
 });
