@@ -1,2 +1,2 @@
-web: start -p $PORT
+web: npm start -p $PORT
 api: node server.js
