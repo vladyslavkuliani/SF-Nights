@@ -17,23 +17,11 @@ class PlaceInfo extends Component{
 
   componentDidMount(){
     var thisComponent = this;
-    // this.getPostData(this.props.place.id, false);
     axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
     axios.get("/getpost", {params:{clubId: this.props.place.id}}).then(function(post){
-    //   if(commentsNeeded){
-    //     axios.get("/comments", {post: post}).then(function(comments){
-    //       console.log(comments);
-    //       thisComponent.setState({comments: comments, gotComments: true});
-    //     });
-    //   }
         thisComponent.setState({post: post.data, gotPost: true});
     });
   }
-
-  getPostData(placeId, commentsNeeded){
-        var thisComponent = this;
-  }
-
 
   render(){
     var place = this.props.place;

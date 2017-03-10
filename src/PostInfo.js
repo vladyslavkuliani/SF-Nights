@@ -8,7 +8,8 @@ import CommentsList from './CommentsList';
       super(props);
       this.state={
         comments: [],
-        gotComments: false
+        gotComments: false,
+
       }
   }
 
@@ -21,22 +22,23 @@ import CommentsList from './CommentsList';
         axios.get('/comment', {params: {id: commentId}}).then((com)=>{
           tonightsComments.push(com.data);
           if(tonightsComments.length === post.data.comments.length){
-            thisComponent.setState({comments: tonightsComments, gotComments: true});
+            thisComponent.setState({comments: tonightsComments});
           }
         });
       });
     });
   }
 
-  //HAVE TO MAKE COMMENT LIST UPDATE ON BUTTON SUBMIT
-  updateCommentList(){
-    console.log("UPDATING");
+  addNewComment(newComment){
+    var newC = this.state.comments;
+    newC.push(newComment);
+    this.setState({comments: newC});
   }
 
   render(){
     return (
       <div className="col-md-8 col-md-offset-2 post-info">
-        {this.props.isOpenNow && <Comments id={this.props.place.id} onNewCommentAdd={this.updateCommentList}/>}
+        {this.props.isOpenNow && <Comments id={this.props.place.id} onNewCommentAdd={this.addNewComment.bind(this)}/>}
         {((this.state.comments.length>0) && <CommentsList comments={this.state.comments}/>) || <div><h1>Be the first one to comment!</h1></div> }
       </div>
     );

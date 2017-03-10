@@ -10,9 +10,7 @@ class PlacePage extends Component{
         this.state = {
             gotPlace: false,
             place: null,
-            is_open_now: false,
-            newComment: false,
-            updateComments: true
+            is_open_now: false
         }
     }
 
@@ -22,37 +20,15 @@ class PlacePage extends Component{
     var id =  arrUrl[arrUrl.length - 1];
     var thisComponent = this;
     axios.get("/getplace", {params:{id: id}}).then(function(place){
-        console.log(place);
       place.data.jsonBody.hours[0].is_open_now ? thisComponent.setState({place: place.data, gotPlace: true, is_open_now: true}) : thisComponent.setState({place: place.data, gotPlace: true});
     });
   }
 
-  leaveComment(){
-    this.setState({newComment: true});
-  }
-
-  handleOnPostComment(e){
-    var thisComponent = this;
-    var data;
-    e.preventDefault();
-    console.log("handleonpost", e);
-
-
-    data += "&id=" + this.state.place.jsonBody.id;
-    console.log("data: ", data);
-    axios.post('/leavecomment', data, function(response){
-      console.log(response);
-      thisComponent.setState({newComment: false, updateComments: false});
-      thisComponent.setState({updateComments: true});
-    });
-  }
-
-
   render(){
     return (
       <div>
-        {this.state.gotPlace && this.state.updateComments && <PlaceInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody} handleOnPostComment={this.handleOnPostComment.bind(this)}/>}
-        {(this.state.is_open_now && this.state.updateComments && <PostInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody}/>) || <SorryMessage/>}
+        {this.state.gotPlace && <PlaceInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody} />}
+        {this.state.gotPlace && ((this.state.is_open_now && <PostInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody}/>) || <SorryMessage/>)}
       </div>
     );
   }

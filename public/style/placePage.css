@@ -1,0 +1,23 @@
+.commentImg{
+    border-radius: 100%;
+    float: left;
+    height: 70px;
+    width: 70px;
+}
+
+.commentsRating{
+    float: right;
+}
+
+.commentBlock{
+    min-height: 70px;
+}
+
+.userName{
+    margin-left: 10px;
+}
+
+.commentContent{
+    margin-left: 100px;
+    margin-top: 10px;
+}
