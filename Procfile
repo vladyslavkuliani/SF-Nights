@@ -1,2 +1,2 @@
-web: npm run start-dev
-api: node server.js
+web: npm run start
+api: nodemon server.js
