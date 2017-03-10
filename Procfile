@@ -1,2 +1,2 @@
-web: nf -p $PORT start
+web: bundle exec thin start -p $PORT
 api: nodemon server.js
