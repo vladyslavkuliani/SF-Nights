@@ -1,2 +1,2 @@
-web: nf start -p $PORT
-api: nodemon server.js
+web: start -p $PORT
+api: node server.js
