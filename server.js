@@ -63,7 +63,7 @@ app.get("/getyelpdata", function(req,res){
     client = yelp.client(response.jsonBody.access_token);
 
     client.search({
-      term:'coffee',
+      term:'night clubs',
       latitude: currentUserLocation["lat"],
       longitude: currentUserLocation["lng"],
       radius: 7000,
