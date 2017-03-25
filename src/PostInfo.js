@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Comments from './Comments.js';
-import CommentsList from './CommentsList.js';
+import Comments from 'Comments.js';
+import CommentsList from 'CommentsList.js';
 
  class PostInfo extends Component{
   constructor(props){
