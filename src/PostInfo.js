@@ -9,7 +9,6 @@ import CommentsList from './CommentsList';
       this.state={
         comments: [],
         gotComments: false,
-
       }
   }
 
