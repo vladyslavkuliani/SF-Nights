@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Comments from './Comments';
+import Comments from './comments';
 import CommentsList from './CommentsList';
 
  class PostInfo extends Component{
