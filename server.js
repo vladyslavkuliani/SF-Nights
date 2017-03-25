@@ -205,6 +205,6 @@ app.get('/currentuser', function(req, res){
   db.User.findOne({_id: userId}, function(err, user){
     res.json(user);
   });
-})
+});
 
 var server = app.listen(process.env.API_PORT || 3001);

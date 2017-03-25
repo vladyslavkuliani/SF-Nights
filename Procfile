@@ -1,2 +1,2 @@
-web: npm start -p $PORT
-api: node server.js
+web: react-scripts start
+api: nodemon server.js
