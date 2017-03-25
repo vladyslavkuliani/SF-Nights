@@ -14,6 +14,7 @@ class SignUpForm extends Component {
     };
 
     console.log(userData);
+    console.log(process.env.API_PORT);
 
     axios.post('/signup', userData).then(function(response){
       console.log("this was just created -> ", response);
