@@ -15,7 +15,7 @@ class PlacePage extends Component{
     }
 
   componentDidMount(){
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     var arrUrl = window.location.href.split("/");
     var id =  arrUrl[arrUrl.length - 1];
     var thisComponent = this;

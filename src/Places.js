@@ -18,7 +18,7 @@ class Places extends Component{
   }
 
   populateMap(){
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
 
     var thisClass = this;
     this.nightClubs = [];
@@ -88,7 +88,7 @@ class Places extends Component{
 
   componentDidMount(){
     var thisClass = this;
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     axios.get('/position').then(function(position){
       console.log("position",position);
       thisClass.map = new window.google.maps.Map(document.getElementById('map'), {

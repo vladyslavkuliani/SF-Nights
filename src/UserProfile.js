@@ -15,7 +15,7 @@ class UserProfile extends Component{
 
   componentWillMount(){
     var thisClass = this;
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     axios.get("/currentuser").then((user)=>{
       thisClass.setState({user: user.data, gotUser:true});
     });
@@ -23,7 +23,7 @@ class UserProfile extends Component{
 
   componentDidMount(){
     const Fn = this;
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     axios.get('/position').then((pos)=>{
       if(!pos.lat){
         console.log("HERE!!!!");
