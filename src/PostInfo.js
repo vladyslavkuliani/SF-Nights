@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Comments from './Comments';
-import CommentsList from './CommentsList';
+import Comments from './Comments.js';
+import CommentsList from './CommentsList.js';
 
  class PostInfo extends Component{
   constructor(props){
@@ -13,7 +13,7 @@ import CommentsList from './CommentsList';
   }
 
   componentDidMount(){
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3001;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     var thisComponent = this;
     var tonightsComments = [];
     axios.get("/getpost", {params:{clubId: this.props.place.id}}).then(function(post){
