@@ -207,4 +207,4 @@ app.get('/currentuser', function(req, res){
   });
 });
 
-var server = app.listen(process.env.API_PORT || 3001);
+var server = app.listen(3001);
