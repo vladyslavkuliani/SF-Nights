@@ -78,7 +78,7 @@ app.get("/getyelpdata", function(req,res){
 
 app.post('/findorcreate', function(req,res){
 
-  function returningNewPlace(place, newPost){
+  function returnNewPlace(place, newPost){
     res.json({place: place, post: newPost});
   }
 
@@ -117,7 +117,7 @@ app.post('/findorcreate', function(req,res){
 
             newPlace.currentPost = newPost._id;
             newPlace.save();
-            returningNewPlace(newPlace, newPost);
+            returnNewPlace(newPlace, newPost);
         }
         else{
           if(typeof detailedInfoPlace.jsonBody["hours"] !== "undefined"){
@@ -207,4 +207,8 @@ app.get('/currentuser', function(req, res){
   });
 });
 
-var server = app.listen(process.env.PORT || 3001);
+app.get('/test', (req,res)=>{
+  res.json({data: "we're here!"});
+});
+
+var server = app.listen(process.env.API_PORT || 3001);

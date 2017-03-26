@@ -14,6 +14,7 @@ class SignUpForm extends Component {
     };
 
     console.log(userData);
+    console.log(process.env);
     console.log(process.env.PORT);
     console.log(process.env.API_PORT);
 
