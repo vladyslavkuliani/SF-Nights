@@ -24,7 +24,8 @@ class UserProfile extends Component{
 
   componentDidMount(){
     const Fn = this;
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     axios.get('/position').then((pos)=>{
       if(!pos.lat){
         console.log("HERE!!!!");
