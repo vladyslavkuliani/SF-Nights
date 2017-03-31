@@ -232,3 +232,7 @@ body{
 .user-profile{
     text-align: center;
 }
+
+hr {
+  margin-top: 0;
+}
