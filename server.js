@@ -7,7 +7,6 @@ const yelp = require('yelp-fusion');
 var db = require('./model');
 
 var app = express();
-var router = express.Router();
 
 var currentUserLocation = {
   "lat": null,
@@ -207,7 +206,7 @@ app.get('/currentuser', function(req, res){
   });
 });
 
-app.get('/test', (req,res)=>{
+app.get('/', (req,res)=>{
   res.json({data: "we're here!"});
 });
 

@@ -18,7 +18,8 @@ class Places extends Component{
   }
 
   populateMap(){
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
 
     var thisClass = this;
     this.nightClubs = [];

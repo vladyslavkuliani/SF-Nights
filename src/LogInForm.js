@@ -5,7 +5,8 @@ class LogInForm extends Component {
   onLogIn(event){
     event.preventDefault();
 
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     var userData = {
       email: document.getElementById("login__username").value,
       password: document.getElementById("login__password").value

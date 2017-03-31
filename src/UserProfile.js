@@ -15,7 +15,8 @@ class UserProfile extends Component{
 
   componentWillMount(){
     var thisClass = this;
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     axios.get("/currentuser").then((user)=>{
       thisClass.setState({user: user.data, gotUser:true});
     });

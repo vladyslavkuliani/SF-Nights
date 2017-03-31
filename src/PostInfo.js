@@ -13,7 +13,8 @@ import CommentsList from './CommentsList';
   }
 
   componentDidMount(){
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     var thisComponent = this;
     var tonightsComments = [];
     axios.get("/getpost", {params:{clubId: this.props.place.id}}).then(function(post){

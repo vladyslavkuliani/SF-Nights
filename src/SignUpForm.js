@@ -5,7 +5,8 @@ class SignUpForm extends Component {
 
   onSignUp(event){
     event.preventDefault();
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     var userData = {
       name: document.getElementById("signup__username").value,
       email: document.getElementById("signup__email").value,
