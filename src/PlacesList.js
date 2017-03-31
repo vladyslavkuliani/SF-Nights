@@ -59,7 +59,7 @@ class PlacesList extends Component{
         return (
           <div key={place.id} id={place.id} className="place-info row">
             <img src={place.image_url} className="club-img pull-left" onClick={()=>{thisComponent.triggerMarkerClick(place.name)}}/>
-            <div className="col-md-6 club-name">
+            <div className="col-md-5 club-name">
               <h4><a href="#" onClick={thisComponent.goToPage.bind(thisComponent, place.id)}>{place.name}</a></h4>
               <span className="text-rating">Rating tonight: <strong>{posts[index].rating}</strong> | <strong>{posts[index].votes.length}</strong> votes</span>
               <hr/>
