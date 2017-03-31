@@ -89,7 +89,8 @@ class Places extends Component{
 
   componentDidMount(){
     var thisClass = this;
-    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
+    axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     axios.get('/position').then(function(position){
       console.log("position",position);
       thisClass.map = new window.google.maps.Map(document.getElementById('map'), {
