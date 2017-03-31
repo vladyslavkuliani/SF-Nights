@@ -70,7 +70,7 @@ class Places extends Component{
                   notSelectedElements[i].setAttribute("style", "border: 2px solid #DCDCDC");
                 }
 
-                document.getElementById(place.id).setAttribute("style", "border: 5px solid #00AF33");//#00AF33
+                document.getElementById(place.id).setAttribute("style", "border: 2px solid #00AF33");//#00AF33
               });
 
               thisClass.markers.push(marker);
