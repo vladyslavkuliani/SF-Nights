@@ -5,7 +5,6 @@ class SignUpForm extends Component {
 
   onSignUp(event){
     event.preventDefault();
-    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.PORT || 3001);
     axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     var userData = {
       name: document.getElementById("signup__username").value,
@@ -14,13 +13,11 @@ class SignUpForm extends Component {
       password: document.getElementById("signup__password").value
     };
 
-    console.log(userData);
-    console.log(process.env);
-    console.log(process.env.PORT);
-    console.log(process.env.API_PORT);
-
     axios.post('/signup', userData).then(function(response){
       console.log("this was just created -> ", response);
+      axios.post("/login", userData).then(function(response){
+        window.location.replace("/profile");
+      });
     });
   }
 

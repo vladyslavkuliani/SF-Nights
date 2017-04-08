@@ -5,7 +5,6 @@ import axios from 'axios';
 import NavBar from './NavBar';
 import styles from '../public/style/navbar.css';
 
-
 class PlaceInfo extends Component{
     constructor(props){
         super(props);

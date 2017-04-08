@@ -10,7 +10,7 @@ class NavBar extends Component {
   }
 
   logOut(){
-    window.location.replace('/logout');
+    window.location.replace('/login');
   }
 
   render(){

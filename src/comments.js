@@ -14,7 +14,6 @@ class Comments extends Component{
       }
   }
 
-
   ratingChanged(e){
     console.log("changed rating", e);
     this.rating = e;

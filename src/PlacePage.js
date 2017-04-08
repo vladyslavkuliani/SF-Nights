@@ -15,7 +15,6 @@ class PlacePage extends Component{
     }
 
   componentDidMount(){
-    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     var arrUrl = window.location.href.split("/");
     var id =  arrUrl[arrUrl.length - 1];
@@ -30,6 +29,7 @@ class PlacePage extends Component{
       <div>
         {this.state.gotPlace && <PlaceInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody} />}
         {this.state.gotPlace && ((this.state.is_open_now && <PostInfo isOpenNow={this.state.is_open_now} place={this.state.place.jsonBody}/>) || <SorryMessage/>)}
+        
       </div>
     );
   }
