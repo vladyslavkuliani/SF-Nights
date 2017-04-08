@@ -1,5 +1,6 @@
 body{
-  background: #f5f8fa;
+  background: url("http://i.imgur.com/OZqaUfg.jpg") !important;
+  background-size: cover !important;
   margin-top: 40px;
 }
 

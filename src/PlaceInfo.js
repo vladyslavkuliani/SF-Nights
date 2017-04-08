@@ -16,7 +16,6 @@ class PlaceInfo extends Component{
 
   componentDidMount(){
     var thisComponent = this;
-    // axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + (process.env.API_PORT || 3001);
     axios.defaults.baseURL = 'https://hidden-sierra-78177.herokuapp.com';
     axios.get("/getpost", {params:{clubId: this.props.place.id}}).then(function(post){
         thisComponent.setState({post: post.data, gotPost: true});

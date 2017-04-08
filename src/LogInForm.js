@@ -19,27 +19,28 @@ class LogInForm extends Component {
 
   render(){
     return (
-      <div>
+      <div className="login">
+            {/*<p className="sf-nights-name">SF Nights</p>*/}
             <form className="form login form-login">
 
               <div className="form__field">
                 <label for="login__username"><span className="hidden">Username</span></label>
 
-                <input className="form__input" id="login__username"  type="text" name="email" placeholder="Email"/>
+                <input className="form__input form-control" id="login__username"  type="text" name="email" placeholder="Email"/>
               </div>
 
               <div className="form__field">
                 <label for="login__password"><span className="hidden">Password</span></label>
-                <input className="form__input" id="login__password" type="password" name="password" placeholder="Password"/>
+                <input className="form__input form-control" id="login__password" type="password" name="password" placeholder="Password"/>
               </div>
 
               <div className="form__field">
-                <input type="submit" value="Log In" onClick={this.onLogIn}/>
+                <input className="btn btn-primary btn-login-signup" type="submit" value="Log In" onClick={this.onLogIn}/>
               </div>
 
             </form>
 
-            <p className="text--center">Not a member? <a href="/signup" id="sign-up-link" onClick={this.props.onClick}>Sign up now</a></p>
+            <p className="text--center signup-prompt"><span className="login-text">Not a member?</span> <a href="/signup" id="sign-up-link" onClick={this.props.onClick}>Sign up now</a></p>
       </div>
     );
   }

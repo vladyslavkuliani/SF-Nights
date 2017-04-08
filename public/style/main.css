@@ -82,7 +82,8 @@ h4{
 }
 
 body{
-  background: #f5f8fa;
+  background: url("http://i.imgur.com/OZqaUfg.jpg") !important;
+  background-size: cover !important;
 }
 
 .header{
@@ -224,15 +225,62 @@ body{
 }
 
 .user-img{
-    hight: 250px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
     border-radius: 100%;
+    margin: 20px;
 }
 
 .user-profile{
     text-align: center;
 }
 
+.user-profile h3{
+  color: white;
+}
+
 hr {
   margin-top: 0;
+}
+
+.login{
+  text-align: center;
+  margin-top: 20%;
+}
+
+.login a{
+  color:#FFDB19;
+}
+
+.form-control{
+  width: 25%;
+  margin-left: 37.5%;
+}
+
+.btn-login-signup{
+  margin-top: 20px;
+  width: 100px;
+}
+
+.login-text{
+  color: white;
+}
+
+.signup-prompt{
+  margin-top: 5px;
+}
+
+.sf-nights-name{
+  font-family: 'Ultra', serif;
+  /*font-family: 'Shrikhand', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  /*font-family: 'Cookie', cursive;*/
+  font-size: 40px;
+  font-weight: bolder;
+  color:black;
+    text-shadow:
+    -1px -1px 0 #FFDB19,
+    1px -1px 0 #FFDB19,
+    -1px 1px 0 #FFDB19,
+    1px 1px 0 #FFDB19;
 }
