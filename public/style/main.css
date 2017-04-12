@@ -284,3 +284,10 @@ hr {
     -1px 1px 0 #FFDB19,
     1px 1px 0 #FFDB19;
 }
+
+.footer{
+  color: #FFDB19;
+  position: fixed;
+  right: 40px;
+  bottom: 0;
+}

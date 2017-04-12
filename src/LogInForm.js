@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Footer from './Footer';
 
 class LogInForm extends Component {
   onLogIn(event){
@@ -41,6 +42,7 @@ class LogInForm extends Component {
             </form>
 
             <p className="text--center signup-prompt"><span className="login-text">Not a member?</span> <a href="/signup" id="sign-up-link" onClick={this.props.onClick}>Sign up now</a></p>
+            <Footer/>
       </div>
     );
   }
